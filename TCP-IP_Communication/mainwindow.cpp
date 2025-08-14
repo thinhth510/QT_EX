@@ -37,8 +37,7 @@ void MainWindow::on_pushButton_Send_Data_clicked()
         if(TCPSocket->isOpen())
         {
             QString WriteData = ui->lineEdit_Write_Data->text();
-
-            TCPSocket->write(WriteData.toUtf8());
+            TCPSocket->write(WriteData.toUtf8()+ "\n");
         }
         else
         {
