@@ -11,3 +11,12 @@ Examples about **QThread**
 3. **Thread Concurrent**  
    Demonstrates using `<QFuture>` and `<QtConcurrent>` to run two independent tasks without manually creating or managing `QThread` objects.
 
+Examples about **QNetwork**
+
+1. **TCP-IP_Communication**  
+   Demonstrates using '<QtNetwork/QTcpSocket>' and '<QtNetwork/QHostAddress>' to transmit and receive message form QT(client) and PC(server)
+   'nc -l -p 8080' 
+
+3. **TCP-IP_Servers**  
+   Demonstrates using '<QtNetwork/QTcpSocket>' and `<QtNetwork/QTcpServer>` to transmit and receive message form QT(server) and PC(client)
+   'nc 127.0.0.1 8080' - each terminal window  similar like a client
