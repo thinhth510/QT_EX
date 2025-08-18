@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(TCPSocket_Application LANGUAGES CXX)
+project(TCP-IP_Servers LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -24,17 +24,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets Network REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Core Network REQUIRED)
 
 if(ANDROID)
-  add_library(TCPSocket_Application SHARED
+  add_library(TCP-IP_Communication SHARED
     main.cpp
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
   )
 else()
-  add_executable(TCPSocket_Application
+  add_executable(TCP-IP_Communication
     main.cpp
     mainwindow.cpp
     mainwindow.h
@@ -42,7 +42,8 @@ else()
   )
 endif()
 
-target_link_libraries(TCPSocket_Application PRIVATE
+target_link_libraries(TCP-IP_Communication PRIVATE
     Qt5::Widgets
+    Qt5::Core
     Qt5::Network
 )
