@@ -17,6 +17,10 @@ Examples about **QNetwork**
    Demonstrates using '<QtNetwork/QTcpSocket>' and '<QtNetwork/QHostAddress>' to transmit and receive message form QT(client) and PC(server)
    'nc -l -p 8080' 
 
-3. **TCP-IP_Servers**  
+2. **TCP-IP_Servers**  
    Demonstrates using '<QtNetwork/QTcpSocket>' and `<QtNetwork/QTcpServer>` to transmit and receive message form QT(server) and PC(client)
    'nc 127.0.0.1 8080' - each terminal window  similar like a client
+
+3. **TCP-IP_File_Transfer**  
+   Demonstrates using '<QtNetwork/QTcpSocket>' and `<QtNetwork/QTcpServer>` to transmit and receive file form QT(server) and PC(client)
+   'File (*.jpg *.png *.txt *.bmp)'
