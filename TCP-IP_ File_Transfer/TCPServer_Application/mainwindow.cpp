@@ -25,7 +25,46 @@ MainWindow::~MainWindow()
 
 void MainWindow::readSocket()
 {
+    QTcpSocket *socket = qobject_cast<QTcpSocket*>(sender());
+    QByteArray DataBuffer;
+    QDataStream socketstream(socket);
 
+    socketstream.setVersion(QDataStream::Qt_DefaultCompiledVersion);
+    socketstream.startTransaction();
+    socketstream >> DataBuffer;
+
+    if(socketstream.commitTransaction() == false)
+    {
+        return;
+    }
+    QString HeaderData = DataBuffer.mid(0,128);
+
+    // 1) Lấy phần filename và filesize tách riêng
+    QStringList parts = HeaderData.split(",");
+    // parts[0] = "filename:abc.txt"
+    // parts[1] = "filesize:12345"
+
+    // 2) Lấy full file name (vd: "abc.txt")
+    QString fullName = parts[0].split(":")[1];
+
+    // 3) Dùng QFileInfo để tách tên và đuôi
+    QFileInfo fi(fullName);
+    QString Filename = fi.completeBaseName();  // "abc"
+    QString FileExt  = fi.suffix();            // "txt"
+
+    // 4) Lấy file size
+    QString FileSize = parts[1].split(":")[1]; // "12345"
+
+    DataBuffer = DataBuffer.mid(128);
+
+    QString SaveFilePath = QCoreApplication::applicationDirPath() +  "/" + Filename;
+
+    QFile File(SaveFilePath);
+    if (File.open(QIODevice::WriteOnly))
+    {
+        File.write(DataBuffer);
+        File.close();
+    }
 }
 
 void MainWindow::discardSocket()
